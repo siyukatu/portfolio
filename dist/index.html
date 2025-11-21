@@ -218,7 +218,7 @@
                                     text-align: center;
                                     line-height: 1;
                                     &:first-child {
-                                        font-size: 0.95em;
+                                        font-size: 0.9em;
                                     }
                                     &:last-child {
                                         margin-top: 0.375em;
@@ -390,8 +390,6 @@
                     }
                     &#skills {
                     }
-                    &#contact {
-                    }
                 }
             }
         }
@@ -418,7 +416,39 @@
                         > .links {
                             all: unset;
                             margin-left: auto;
-                            display: none;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.75em;
+                            background: #f0f0f0;
+                            position: absolute;
+                            top: 100%;
+                            right: 0;
+                            box-sizing: border-box;
+                            width: 100%;
+                            padding: 19.5px 20px;
+                            &:before {
+                                content: 'メニュー';
+                                display: block;
+                                font-size: 0.75em;
+                                font-weight: 500;
+                                color: #666;
+                            }
+                            > li {
+                                width: 100%;
+                                &.active {
+                                    border-left: solid 0.1em #666;
+                                    padding-left: 0.5em;
+                                }
+                                &:before {
+                                    display: none !important;
+                                }
+                                > a {
+                                    width: 100%;
+                                    > span {
+                                        text-align: left;
+                                    }
+                                }
+                            }
                         }
                         > #menu-button {
                             all: unset;
@@ -452,10 +482,10 @@
     </style>
 </head>
 <body>
-    <div id="loading">
+<!--    <div id="loading">
         <div class="spinner"></div>
         <p class="motd">ちょっといい感じのポートフォリオ</p>
-    </div>
+    </div>-->
     <header>
         <div class="inner">
             <h1><span>siyukatu</span><span>PORTFOLIO</span></h1>
@@ -485,9 +515,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#contact">
-                        <span>連絡先</span>
-                        <span>CONTACT</span>
+                    <a href="#links">
+                        <span>リンク</span>
+                        <span>LINKS</span>
                     </a>
                 </li>
             </ul>
@@ -536,8 +566,8 @@
         <section id="skills">
             <h2><span>スキル</span><span>SKILLS</span></h2>
         </section>
-        <section id="contact">
-            <h2><span>連絡先</span><span>CONTACT</span></h2>
+        <section id="links">
+            <h2><span>リンク</span><span>LINKS</span></h2>
         </section>
     </main>
     <script>
