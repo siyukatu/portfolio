@@ -141,18 +141,38 @@
                         all: unset;
                         margin-left: auto;
                         display: flex;
-                        gap: 0.5em;
+                        gap: 0.75em;
                         font-weight: 300;
                         > li {
                             all: unset;
-                            display: inline-block;
+                            display: flex;
+                            &.active {
+                                > a {
+                                    &:before {
+                                        display: block;
+                                    }
+                                }
+                            }
                             > a {
                                 all: unset;
                                 color: #333;
+                                cursor: pointer;
                                 text-decoration: none;
                                 font-size: 1em;
                                 display: flex;
                                 flex-direction: column;
+                                position: relative;
+                                &:before {
+                                    content: '';
+                                    position: absolute;
+                                    width: 100%;
+                                    height: 0.1em;
+                                    bottom: calc(-10px - 0.1em);
+                                    left: -0.25em;
+                                    padding: 0 0.25em;
+                                    background: #333;
+                                    display: none;
+                                }
                                 > span {
                                     all: unset;
                                     text-align: center;
@@ -166,11 +186,11 @@
                                         color: #555;
                                     }
                                 }
-                                &:hover {
-                                    text-decoration: underline;
-                                }
                             }
                         }
+                    }
+                    > #menu-button {
+                        display: none;
                     }
                 }
             }
@@ -185,7 +205,20 @@
                     > h2 {
                         all: unset;
                         font-size: 1.3em;
-                        margin: 0 0 0.5em 0;
+                        margin: 0.75em 0 0.5em 0;
+                        display: block;
+                        text-align: left;
+                        > span {
+                            all: unset;
+                            display: block;
+                            &:first-child {
+                                font-weight: 200;
+                            }
+                            &:last-child {
+                                font-size: 0.8em;
+                                color: #666;
+                            }
+                        }
                     }
                     &#about {
                         display: flex;
@@ -228,7 +261,7 @@
                                 font-size: 0.95em;
                                 color: #666;
                             }
-                            > .profile {
+                            > .bio {
                                 all: unset;
                                 display: block;
                                 margin: 0.5em 0 0 0;
@@ -327,6 +360,44 @@
                 vertical-align: middle;
             }
         }
+        @media (max-width: 600px) {
+            body {
+                > header {
+                    > .inner {
+                        > .links {
+                            all: unset;
+                            margin-left: auto;
+                            display: none;
+                        }
+                        > #menu-button {
+                            all: unset;
+                            cursor: pointer;
+                            display: flex;
+                            flex-direction: column;
+                            width: 1.5em;
+                            height: 1.5em;
+                            margin: auto 0 auto auto;
+                            padding: .25em;
+                            gap: 0.3em;
+                            > span {
+                                display: block;
+                                width: 100%;
+                                height: 1px;
+                                background: #333;
+                                margin: auto 0;
+                            }
+                        }
+                    }
+                }
+                > main {
+                    > section {
+                        > h2 {
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
     </style>
 </head>
 <body>
@@ -356,7 +427,20 @@
                         <span>PROJECTS</span>
                     </a>
                 </li>
+                <li>
+                    <a href="#skills">
+                        <span>スキル</span>
+                        <span>SKILLS</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact">
+                        <span>連絡先</span>
+                        <span>CONTACT</span>
+                    </a>
+                </li>
             </ul>
+            <button id="menu-button" aria-label="メニューボタン"><span></span><span></span><span></span></button>
         </div>
     </header>
     <main>
@@ -369,31 +453,40 @@
             <div class="information">
                 <h2>siyukatu</h2>
                 <p class="role">高校生</p>
-                <p class="profile">割と思いつきで行動します。<br>このポートフォリオページも思いつきで作りました。<br>「どこかに就職したいから作った」みたいなものでもないです。</p>
+                <p class="bio">割と思いつきで行動します。<br>このポートフォリオページも思いつきで作りました。<br>なので、今のところ「どこかに就職したい」みたいなものはないです。</p>
             </div>
         </section>
         <section id="history">
-            <h2>経歴</h2>
+            <h2><span>経歴</span><span>HISTORY</span></h2>
             <table class="timeline">
                 <tbody>
                     <tr>
-                        <th><time>2022.11</time></th>
-                        <td><h3>Minecraftサーバーを運営</h3><p>Minecraftサーバー「しゆかつサーバー」を運営しました。</p></td>
+                        <th><time datetime="2022-11">2022.11</time></th>
+                        <td><h3>Minecraftサーバーの運営を開始</h3><p>Minecraftサーバー「しゆかつサーバー」の運営を開始しました。</p></td>
                     </tr>
                     <tr>
-                        <th><time>2023.08</time></th>
+                        <th><time datetime="2023-08">2023.08</time></th>
                         <td><h3>読み上げbotを開発・運営</h3><p>Discordで「ゆっくりボイス読み上げbot」を開発し、運営しています。<br><a href="https://tts.siyukatu.com" target="_blank" class="jlink">tts.siyukatu.com</a></p></td>
                     </tr>
                     <tr>
-                        <th><time>2024.07</time></th>
+                        <th><time datetime="2024-07">2024.07</time></th>
                         <td><h3>Minecraftサーバーの運営を終了</h3><p>Minecraftサーバー「しゆかつサーバー」の運営を多忙のため終了し、データを「にし鯖」へ引き継ぎました。<br><a href="https://nishisaba.jp" target="_blank" class="jlink">nishisaba.jp</a></p></td>
                     </tr>
                     <tr>
-                        <th><time>2024.07</time></th>
+                        <th><time datetime="2024-07">2024.07</time></th>
                         <td><h3>掲示板を開発・運営</h3><p>Discordサーバー掲示板「鯖ちゃんねる」を開発し、運営しています。<br><a href="https://discord.sabach.jp" target="_blank" class="jlink">discord.sabach.jp</a></p></td>
                     </tr>
                 </tbody>
             </table>
+        </section>
+        <section id="projects">
+            <h2><span>制作物</span><span>PROJECTS</span></h2>
+        </section>
+        <section id="skills">
+            <h2><span>スキル</span><span>SKILLS</span></h2>
+        </section>
+        <section id="contact">
+            <h2><span>連絡先</span><span>CONTACT</span></h2>
         </section>
     </main>
     <script>
@@ -404,5 +497,33 @@
                 loading.classList.add('loaded');
             }, Math.max(0, 1000 - (Date.now() - start)));
         });
+        (()=>{
+            const links = document.querySelectorAll('header .links li');
+            const sections = Array.from(links).map(link => {
+                const a = link.querySelector('a');
+                const href = a.getAttribute('href');
+                return document.querySelector(href);
+            });
+            const calcActive = () => {
+                const scrollY = window.scrollY;
+                let activeIndex = 0;
+                sections.forEach((section, index) => {
+                    if (scrollY >= section.offsetTop - 100) {
+                        activeIndex = index;
+                    }
+                });
+                links.forEach((link, index) => {
+                    if (index === activeIndex) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+            window.addEventListener('scroll', () => {
+                calcActive();
+            });
+            calcActive();
+        })();
     </script>
 </body>
