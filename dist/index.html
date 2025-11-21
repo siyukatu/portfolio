@@ -40,6 +40,46 @@
                 transform: rotate(360deg);
             }
         }
+        @keyframes fade-in-lr {
+            0% {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes fade-in-rl {
+            0% {
+                opacity: 0;
+                transform: translateX(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes fade-in-tb {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fade-in-bt {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
         body {
             all: unset;
             line-height: 1.5;
@@ -198,14 +238,14 @@
                 > section {
                     display: block;
                     max-width: 800px;
-                    margin: 20px auto;
+                    margin: 1.75em auto;
                     padding: 0 20px;
                     overflow: hidden;
                     box-sizing: border-box;
                     > h2 {
                         all: unset;
                         font-size: 1.3em;
-                        margin: 0.75em 0 0.5em 0;
+                        margin: 0 0 0.5em 0;
                         display: block;
                         text-align: left;
                         > span {
@@ -282,6 +322,7 @@
                                 > tr {
                                     --pt: 0.5em;
                                     --pb: 0.5em;
+                                    --animation-index: 0;
                                     &:first-child {
                                         --pt: 0.75em;
                                     }
@@ -297,6 +338,7 @@
                                         line-height: 1;
                                         white-space: nowrap;
                                         text-align: right;
+                                        opacity: 0;
                                         &:after {
                                             content: "";
                                             position: absolute;
@@ -312,6 +354,7 @@
                                         }
                                         > time {
                                             all: unset;
+                                            display: block;
                                             font-size: 0.85em;
                                             color: #666;
                                         }
@@ -325,6 +368,7 @@
                                             font-size: 0.95em;
                                             line-height: 1;
                                             margin: 0 0 0.25em 0;
+                                            opacity: 0;
                                         }
                                         > p {
                                             all: unset;
@@ -332,6 +376,7 @@
                                             font-size: 0.85em;
                                             line-height: 1.4;
                                             color: #333;
+                                            opacity: 0;
                                         }
                                     }
                                     > th, td {
@@ -403,7 +448,7 @@
 <body>
     <div id="loading">
         <div class="spinner"></div>
-        <p class="motd">ここにテキストを入力</p>
+        <p class="motd">ちょっといい感じのポートフォリオ</p>
     </div>
     <header>
         <div class="inner">
@@ -494,10 +539,25 @@
         window.addEventListener('load', () => {
             const loading = document.getElementById('loading');
             setTimeout(() => {
+                setTimeout(() => {
+                    const rows = document.querySelectorAll('#history .timeline tbody tr');
+                    rows.forEach((row, index) => {
+                        row.style.setProperty('--animation-index', index);
+                        const th = row.querySelector('th');
+                        th.style.animation = `fade-in-tb 0.5s ease forwards`;
+                        th.style.animationDelay = `${index * 0.15}s`;
+                        const h3 = row.querySelector('td>h3');
+                        h3.style.animation = `fade-in-rl 0.5s ease forwards`;
+                        h3.style.animationDelay = `${index * 0.15 + 0.1}s`;
+                        const p = row.querySelector('td>p');
+                        p.style.animation = `fade-in-rl 0.5s ease forwards`;
+                        p.style.animationDelay = `${index * 0.15 + 0.2}s`;
+                    });
+                }, 1250);
                 loading.classList.add('loaded');
             }, Math.max(0, 1000 - (Date.now() - start)));
         });
-        (()=>{
+        (() => {
             const links = document.querySelectorAll('header .links li');
             const sections = Array.from(links).map(link => {
                 const a = link.querySelector('a');
@@ -508,7 +568,7 @@
                 const scrollY = window.scrollY;
                 let activeIndex = 0;
                 sections.forEach((section, index) => {
-                    if (scrollY >= section.offsetTop - 100) {
+                    if (scrollY >= section.offsetTop - 60) {
                         activeIndex = index;
                     }
                 });
