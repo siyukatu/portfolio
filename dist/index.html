@@ -601,6 +601,11 @@
         document.getElementById('menu-button').addEventListener('click', () => {
             document.querySelector('header .inner').classList.toggle('openmenu');
         });
+        document.querySelectorAll('header .links li a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('header .inner').classList.remove('openmenu');
+            });
+        });
         (() => {
             const links = document.querySelectorAll('header .links li');
             const sections = Array.from(links).map(link => {
