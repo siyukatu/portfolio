@@ -95,8 +95,17 @@
             }
             > header {
                 padding: 10px 20px;
-                border-bottom: 1px solid #f9f9f9;
                 display: flex;
+                position: sticky;
+                background: #fffa;
+                top: 0;
+                z-index: 500;
+                max-width: 800px;
+                width: 100%;
+                margin: auto;
+                box-sizing: border-box;
+                border-bottom: solid 0.1em #eee;
+                backdrop-filter: saturate(180%) blur(10px);
                 > .inner {
                     all: unset;
                     display: flex;
@@ -228,6 +237,7 @@
                         > .timeline {
                             position: relative;
                             padding-left: 1em;
+                            border-spacing: 0;
                             > tbody {
                                 > tr {
                                     --pt: 0.5em;
