@@ -98,6 +98,7 @@
                 z-index: 1000;
                 &.loaded {
                     animation: loading-unclip .5s 1s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+                    pointer-events: none;
                     > .spinner {
                         display: none;
                     }
@@ -186,33 +187,32 @@
                         > li {
                             all: unset;
                             display: flex;
+                            position: relative;
+                            &:before {
+                                content: '';
+                                position: absolute;
+                                width: 100%;
+                                height: 0.1em;
+                                bottom: calc(-10px - 0.1em);
+                                left: -0.25em;
+                                padding: 0 0.25em;
+                                background: #333;
+                                display: none;
+                            }
                             &.active {
-                                > a {
-                                    &:before {
-                                        display: block;
-                                    }
+                                &:before {
+                                    display: block;
                                 }
                             }
                             > a {
                                 all: unset;
                                 color: #333;
+                                margin: auto 0;
                                 cursor: pointer;
                                 text-decoration: none;
                                 font-size: 1em;
                                 display: flex;
                                 flex-direction: column;
-                                position: relative;
-                                &:before {
-                                    content: '';
-                                    position: absolute;
-                                    width: 100%;
-                                    height: 0.1em;
-                                    bottom: calc(-10px - 0.1em);
-                                    left: -0.25em;
-                                    padding: 0 0.25em;
-                                    background: #333;
-                                    display: none;
-                                }
                                 > span {
                                     all: unset;
                                     text-align: center;
@@ -386,6 +386,12 @@
                             }
                         }
                     }
+                    &#projects {
+                    }
+                    &#skills {
+                    }
+                    &#contact {
+                    }
                 }
             }
         }
@@ -498,7 +504,7 @@
             <div class="information">
                 <h2>siyukatu</h2>
                 <p class="role">高校生</p>
-                <p class="bio">割と思いつきで行動します。<br>このポートフォリオページも思いつきで作りました。<br>なので、今のところ「どこかに就職したい」みたいなものはないです。</p>
+                <p class="bio">割と思いつきで行動します。<br>このポートフォリオページも思いつきで作りました。<br>ちなみに進学先はもう決まりました。<br>(つまり就職したいから作ったわけではない)</p>
             </div>
         </section>
         <section id="history">
