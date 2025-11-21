@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>siyukatu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=link">
+    <style>
+        @keyframes loading-clip {
+            0% {
+                clip-path: inset(0% 100% 0% 0%);
+            }
+            100% {
+                clip-path: inset(0% 0% 0% 0%);
+            }
+        }
+        @keyframes loading-unclip {
+            0% {
+                clip-path: inset(0% 0% 0% 0%);
+            }
+            100% {
+                clip-path: inset(0% 0% 0% 100%);
+            }
+        }
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        body {
+            all: unset;
+            line-height: 1.5;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 300;
+            > #loading {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                background: #fff;
+                color: #000;
+                display: flex;
+                z-index: 1000;
+                &.loaded {
+                    animation: loading-unclip 0.5s 1s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+                    > .spinner {
+                        display: none;
+                    }
+                    > .motd {
+                        display: block;
+                    }
+                }
+                > .spinner {
+                    all: unset;
+                    margin: auto;
+                    width: 3em;
+                    height: 3em;
+                    border: solid 0.1em #ddd;
+                    border-top-color: #333;
+                    border-radius: 50%;
+                    box-sizing: border-box;
+                    animation: spin 0.75s linear infinite;
+                    transition: transform 0.5s cubic-bezier(0.85, 0, 0.15, 1);
+                }
+                > .motd {
+                    all: unset;
+                    position: relative;
+                    margin: auto;
+                    font-size: 1em;
+                    color: #fff;
+                    padding: 0.25em 0.5em;
+                    line-height: 1;
+                    display: none;
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                        z-index: -1;
+                        display: block;
+                        background: #000;
+                        animation: loading-clip .5s cubic-bezier(0.85, 0, 0.15, 1);
+                    }
+                }
+            }
+            > header {
+                padding: 10px 20px;
+                border-bottom: 1px solid #f9f9f9;
+                display: flex;
+                > .inner {
+                    all: unset;
+                    display: flex;
+                    width: 100%;
+                    max-width: 800px;
+                    margin: auto;
+                    > h1 {
+                        all: unset;
+                        font-size: 1em;
+                        margin: auto 0;
+                        > span {
+                            all: unset;
+                            display: block;
+                            line-height: 1;
+                            &:first-child {
+                                font-weight: 200;
+                            }
+                            &:last-child {
+                                font-size: 0.8em;
+                                color: #666;
+                                margin-top: 0.375em;
+                            }
+                        }
+                    }
+                    > .links {
+                        all: unset;
+                        margin-left: auto;
+                        display: flex;
+                        gap: 0.5em;
+                        font-weight: 300;
+                        > li {
+                            all: unset;
+                            display: inline-block;
+                            > a {
+                                all: unset;
+                                color: #333;
+                                text-decoration: none;
+                                font-size: 1em;
+                                display: flex;
+                                flex-direction: column;
+                                > span {
+                                    all: unset;
+                                    text-align: center;
+                                    line-height: 1;
+                                    &:first-child {
+                                        font-size: 0.95em;
+                                    }
+                                    &:last-child {
+                                        margin-top: 0.375em;
+                                        font-size: 0.7em;
+                                        color: #555;
+                                    }
+                                }
+                                &:hover {
+                                    text-decoration: underline;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            > main {
+                > section {
+                    display: block;
+                    max-width: 800px;
+                    margin: 20px auto;
+                    padding: 0 20px;
+                    overflow: hidden;
+                    box-sizing: border-box;
+                    > h2 {
+                        all: unset;
+                        font-size: 1.3em;
+                        margin: 0 0 0.5em 0;
+                    }
+                    &#about {
+                        display: flex;
+                        width: 100%;
+                        > .icon {
+                            min-width: 5em;
+                            max-width: 5em;
+                            min-height: 5em;
+                            max-height: 5em;
+                            background: #f5f5f5;
+                            border-radius: 50%;
+                            > .text {
+                                width: 100%;
+                                height: 100%;
+                                display: flex;
+                                color: #999;
+                                box-sizing: border-box;
+                                text-align: center;
+                                font-size: 0.5em;
+                                font-weight: 400;
+                                > p {
+                                    all: unset;
+                                    margin: auto;
+                                }
+                            }
+                        }
+                        > .information {
+                            flex-grow: 1;
+                            margin: auto 0 auto 1em;
+                            line-height: 1;
+                            > h2 {
+                                all: unset;
+                                font-size: 1.3em;
+                                margin: 0;
+                            }
+                            > .role {
+                                all: unset;
+                                display: block;
+                                margin: 0.75em 0 0 0;
+                                font-size: 0.95em;
+                                color: #666;
+                            }
+                            > .profile {
+                                all: unset;
+                                display: block;
+                                margin: 0.5em 0 0 0;
+                                font-size: 0.85em;
+                                line-height: 1.25;
+                                color: #333;
+                                background: #fafafa;
+                                padding: 0.5em;
+                            }
+                        }
+                    }
+                    &#history {
+                        > .timeline {
+                            position: relative;
+                            padding-left: 1em;
+                            > tbody {
+                                > tr {
+                                    --pt: 0.5em;
+                                    --pb: 0.5em;
+                                    &:first-child {
+                                        --pt: 0.75em;
+                                    }
+                                    &:last-child {
+                                        --pb: 0.75em;
+                                    }
+                                    > th {
+                                        all: unset;
+                                        padding: var(--pt) 0.75em var(--pb) 0;
+                                        box-sizing: border-box;
+                                        border-right: solid 0.1em #ddd;
+                                        position: relative;
+                                        line-height: 1;
+                                        white-space: nowrap;
+                                        text-align: right;
+                                        &:after {
+                                            content: "";
+                                            position: absolute;
+                                            width: 0.75em;
+                                            height: 0.75em;
+                                            top: calc(0.2em + var(--pt));
+                                            right: calc(-0.75em - calc(0.1em / 2));
+                                            transform: translateX(-50%);
+                                            background: #fff;
+                                            border: solid 0.1em #aaa;
+                                            border-radius: 50%;
+                                            box-sizing: border-box;
+                                        }
+                                        > time {
+                                            all: unset;
+                                            font-size: 0.85em;
+                                            color: #666;
+                                        }
+                                    }
+                                    > td {
+                                        all: unset;
+                                        padding: var(--pt) 0 var(--pb) 0.75em;
+                                        > h3 {
+                                            all: unset;
+                                            display: block;
+                                            font-size: 0.95em;
+                                            line-height: 1;
+                                            margin: 0 0 0.25em 0;
+                                        }
+                                        > p {
+                                            all: unset;
+                                            display: block;
+                                            font-size: 0.85em;
+                                            line-height: 1.4;
+                                            color: #333;
+                                        }
+                                    }
+                                    > th, td {
+                                        display: table-cell;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .jlink {
+            color: currentColor;
+            text-decoration: underline;
+            position: relative;
+            &:before {
+                font-family: 'Material Symbols Outlined';
+                content: "\e157";
+                font-variation-settings:
+                    'FILL' 0,
+                    'wght' 300,
+                    'GRAD' 0,
+                    'opsz' 24;
+                font-size: 0.85em;
+                vertical-align: middle;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">
+        <div class="spinner"></div>
+        <p class="motd">ここにテキストを入力</p>
+    </div>
+    <header>
+        <div class="inner">
+            <h1><span>siyukatu</span><span>PORTFOLIO</span></h1>
+            <ul class="links">
+                <li>
+                    <a href="#about">
+                        <span>私について</span>
+                        <span>ABOUT</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#history">
+                        <span>経歴</span>
+                        <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#projects">
+                        <span>制作物</span>
+                        <span>PROJECTS</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <section id="about">
+            <div class="icon">
+                <div class="text">
+                    <p>アイコンは<br>ありません</p>
+                </div>
+            </div>
+            <div class="information">
+                <h2>siyukatu</h2>
+                <p class="role">高校生</p>
+                <p class="profile">割と思いつきで行動します。<br>このポートフォリオページも思いつきで作りました。<br>「どこかに就職したいから作った」みたいなものでもないです。</p>
+            </div>
+        </section>
+        <section id="history">
+            <h2>経歴</h2>
+            <table class="timeline">
+                <tbody>
+                    <tr>
+                        <th><time>2022.11</time></th>
+                        <td><h3>Minecraftサーバーを運営</h3><p>Minecraftサーバー「しゆかつサーバー」を運営しました。</p></td>
+                    </tr>
+                    <tr>
+                        <th><time>2023.08</time></th>
+                        <td><h3>読み上げbotを開発・運営</h3><p>Discordで「ゆっくりボイス読み上げbot」を開発し、運営しています。<br><a href="https://tts.siyukatu.com" target="_blank" class="jlink">tts.siyukatu.com</a></p></td>
+                    </tr>
+                    <tr>
+                        <th><time>2024.07</time></th>
+                        <td><h3>Minecraftサーバーの運営を終了</h3><p>Minecraftサーバー「しゆかつサーバー」の運営を多忙のため終了し、データを「にし鯖」へ引き継ぎました。<br><a href="https://nishisaba.jp" target="_blank" class="jlink">nishisaba.jp</a></p></td>
+                    </tr>
+                    <tr>
+                        <th><time>2024.07</time></th>
+                        <td><h3>掲示板を開発・運営</h3><p>Discordサーバー掲示板「鯖ちゃんねる」を開発し、運営しています。<br><a href="https://discord.sabach.jp" target="_blank" class="jlink">discord.sabach.jp</a></p></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script>
+        const start = Date.now();
+        window.addEventListener('load', () => {
+            const loading = document.getElementById('loading');
+            setTimeout(() => {
+                loading.classList.add('loaded');
+            }, Math.max(0, 1000 - (Date.now() - start)));
+        });
+    </script>
+</body>
