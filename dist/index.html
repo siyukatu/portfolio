@@ -413,10 +413,15 @@
             body {
                 > header {
                     > .inner {
+                        &.openmenu {
+                            > .links {
+                                display: flex;
+                            }
+                        }
                         > .links {
                             all: unset;
                             margin-left: auto;
-                            display: flex;
+                            display: none;
                             flex-direction: column;
                             gap: 0.75em;
                             background: #f0f0f0;
@@ -592,6 +597,9 @@
                 }, 1250);
                 loading.classList.add('loaded');
             }, Math.max(0, 1000 - (Date.now() - start)));
+        });
+        document.getElementById('menu-button').addEventListener('click', () => {
+            document.querySelector('header .inner').classList.toggle('openmenu');
         });
         (() => {
             const links = document.querySelectorAll('header .links li');
