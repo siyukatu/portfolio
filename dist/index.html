@@ -40,14 +40,17 @@
             font-weight: 300;
             > #loading {
                 position: fixed;
+                max-width: 800px;
                 width: 100%;
                 height: 100%;
+                left: 50%;
+                transform: translateX(-50%);
                 background: #fff;
                 color: #000;
                 display: flex;
                 z-index: 1000;
                 &.loaded {
-                    animation: loading-unclip 1s 1s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+                    animation: loading-unclip .5s 1s cubic-bezier(0.85, 0, 0.15, 1) forwards;
                     > .spinner {
                         display: none;
                     }
@@ -86,7 +89,7 @@
                         z-index: -1;
                         display: block;
                         background: #000;
-                        animation: loading-clip 1s cubic-bezier(0.85, 0, 0.15, 1);
+                        animation: loading-clip .5s cubic-bezier(0.85, 0, 0.15, 1);
                     }
                 }
             }
