@@ -367,20 +367,16 @@
                             > .timeline {
                                 > tbody {
                                     > tr {
-                                        animation: fade-in-bt 0.5s ease forwards;
+                                        animation: fade-in-tb 0.5s ease forwards;
                                         animation-delay: calc(var(--order, 0) * 0.15s);
-                                        > th {
-                                            animation: fade-in-tb 0.5s ease forwards;
-                                            animation-delay: calc(var(--order, 0) * 0.15s);
-                                        }
                                         > td {
                                             > h3 {
                                                 animation: fade-in-rl 0.5s ease forwards;
-                                                animation-delay: calc(var(--order, 0) * 0.15s + 0.1s);
+                                                animation-delay: calc(var(--order, 0) * 0.15s + 0.2s);
                                             }
                                             > p {
                                                 animation: fade-in-rl 0.5s ease forwards;
-                                                animation-delay: calc(var(--order, 0) * 0.15s + 0.2s);
+                                                animation-delay: calc(var(--order, 0) * 0.15s + 0.3s);
                                             }
                                         }
                                     }
@@ -411,7 +407,6 @@
                                         line-height: 1;
                                         white-space: nowrap;
                                         text-align: right;
-                                        opacity: 0;
                                         &:after {
                                             content: "";
                                             position: absolute;
@@ -850,12 +845,12 @@
             const links = document.getElementById('links');
             const items = links.querySelectorAll('.links-list li');
             items.forEach((item, index) => {
-                item.style.setProperty('--order', index);
+                item.style.setProperty('--order', index+2);
             });
 
             const rows = document.querySelectorAll('#history .timeline tbody tr');
             rows.forEach((row, index) => {
-                row.style.setProperty('--order', index);
+                row.style.setProperty('--order', index+2);
             });
         })();
 
