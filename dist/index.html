@@ -903,7 +903,7 @@
             const scrollY = window.scrollY;
             let activeIndex = 0;
             sections.forEach((section, index) => {
-                if (scrollY >= section.offsetTop - 60) {
+                if (scrollY >= section.offsetTop) {
                     activeIndex = index;
                 }
             });
