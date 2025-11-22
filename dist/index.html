@@ -92,6 +92,21 @@
             line-height: 1.5;
             font-family: 'Noto Sans JP', sans-serif;
             font-weight: 300;
+            &.loaded {
+                >#loading {
+                    animation: loading-unclip .75s 1s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+                    > .spinner {
+                        display: none;
+                    }
+                    > .motd {
+                        display: flex;
+                    }
+                }
+                > header {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
             > #loading {
                 position: fixed;
                 max-width: 800px;
@@ -103,15 +118,6 @@
                 color: #000;
                 display: flex;
                 z-index: 1000;
-                &.loaded {
-                    animation: loading-unclip .75s 1s cubic-bezier(0.85, 0, 0.15, 1) forwards;
-                    > .spinner {
-                        display: none;
-                    }
-                    > .motd {
-                        display: flex;
-                    }
-                }
                 > .spinner {
                     all: unset;
                     margin: auto;
@@ -122,7 +128,6 @@
                     border-radius: 50%;
                     box-sizing: border-box;
                     animation: spin 0.75s linear infinite;
-                    transition: transform 0.5s cubic-bezier(0.85, 0, 0.15, 1);
                 }
                 > .motd {
                     all: unset;
@@ -148,24 +153,26 @@
                 }
             }
             > header {
-                padding: 10px 20px;
                 height: var(--header-height);
                 display: flex;
                 position: fixed;
                 background: #fffa;
                 top: 0;
-                left: 50%;
-                transform: translateX(-50%);
+                left: 0%;
+                transform: translateY(-100%);
                 z-index: 500;
-                max-width: 800px;
                 width: 100%;
                 box-sizing: border-box;
                 border-bottom: solid 0.1em #eee;
                 backdrop-filter: saturate(180%) blur(10px);
+                opacity: 0;
+                transition: transform 0.5s 1.2s ease, opacity 1s 1.3s ease;
                 > .inner {
                     all: unset;
                     display: flex;
                     width: 100%;
+                    padding: 10px 20px;
+                    box-sizing: border-box;
                     max-width: 800px;
                     margin: auto;
                     > h1 {
@@ -359,15 +366,6 @@
                             > .timeline {
                                 > tbody {
                                     > tr {
-/*                const th = row.querySelector('th');
-                th.style.animation = `fade-in-tb 0.5s ease forwards`;
-                th.style.animationDelay = `${index * 0.15}s`;
-                const h3 = row.querySelector('td>h3');
-                h3.style.animation = `fade-in-rl 0.5s ease forwards`;
-                h3.style.animationDelay = `${index * 0.15 + 0.1}s`;
-                const p = row.querySelector('td>p');
-                p.style.animation = `fade-in-rl 0.5s ease forwards`;
-                p.style.animationDelay = `${index * 0.15 + 0.2}s`;*/
                                         animation: fade-in-bt 0.5s ease forwards;
                                         animation-delay: calc(var(--order, 0) * 0.15s);
                                         > th {
@@ -857,7 +855,6 @@
 
         const start = Date.now();
         window.addEventListener('load', () => {
-            const loading = document.getElementById('loading');
             setTimeout(() => {
                 setTimeout(() => {
                     sections.forEach((section) => {
@@ -871,7 +868,7 @@
                         observer.observe(section);
                     });
                 }, 1350);
-                loading.classList.add('loaded');
+                document.body.classList.add('loaded');
             }, Math.max(0, 1000 - (Date.now() - start)));
         });
         document.getElementById('menu-button').addEventListener('click', () => {
