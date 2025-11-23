@@ -887,12 +887,12 @@
             const links = document.getElementById('links');
             const items = links.querySelectorAll('.links-list li');
             items.forEach((item, index) => {
-                item.style.setProperty('--order', index+2);
+                item.style.setProperty('--order', index);
             });
 
             const rows = document.querySelectorAll('#history .timeline tbody tr');
             rows.forEach((row, index) => {
-                row.style.setProperty('--order', index+2);
+                row.style.setProperty('--order', index);
             });
         })();
 
@@ -935,7 +935,7 @@
             const scrollY = window.scrollY;
             let activeIndex = 0;
             sections.forEach((section, index) => {
-                if (scrollY >= section.offsetTop) {
+                if (scrollY >= section.offsetTop - 10) {
                     activeIndex = index;
                 }
             });
