@@ -499,7 +499,7 @@
                         &.visible {
                             > .projects-list {
                                 > li {
-                                    --animation-name: fade-in-rl;
+                                    --animation-name: fade-in-bt;
                                     animation: var(--animation-name) 0.5s forwards;
                                     animation-delay: calc(var(--order, 0) * .075s + var(--animation-base, 0s));
                                 }
@@ -1098,15 +1098,15 @@
     </footer>
     <script>
         (() => {
-            const links = document.getElementById('links');
-            const items = links.querySelectorAll('.links-list li');
-            items.forEach((item, index) => {
-                item.style.setProperty('--order', index);
-            });
-
             const rows = document.querySelectorAll('#history .timeline tbody tr');
             rows.forEach((row, index) => {
                 row.style.setProperty('--order', index);
+            });
+
+            document.querySelectorAll('main > section > ul').forEach(ul => {
+                ul.querySelectorAll('li').forEach((item, index) => {
+                    item.style.setProperty('--order', index);
+                });
             });
         })();
 
