@@ -320,8 +320,29 @@
                         }
                     }
                     &#about {
+                        --animation-base: 0s;
                         display: flex;
                         width: 100%;
+                        &.visible {
+                            > .icon {
+                                animation: fade-in-rl 0.5s ease forwards;
+                                animation-delay: calc(0.1s + var(--animation-base, 0s))
+                            }
+                            > .information {
+                                > h2 {
+                                    animation: fade-in-rl 0.5s ease forwards;
+                                    animation-delay: calc(0.2s + var(--animation-base, 0s));
+                                }
+                                > .role {
+                                    animation: fade-in-rl 0.5s ease forwards;
+                                    animation-delay: calc(0.3s + var(--animation-base, 0s));
+                                }
+                                > .bio {
+                                    animation: fade-in-rl 0.5s ease forwards;
+                                    animation-delay: calc(0.4s + var(--animation-base, 0s));
+                                }
+                            }
+                        }
                         > .icon {
                             min-width: 5em;
                             max-width: 5em;
@@ -329,6 +350,7 @@
                             max-height: 5em;
                             background: #f5f5f5;
                             border-radius: 50%;
+                            opacity: 0;
                             > .text {
                                 width: 100%;
                                 height: 100%;
@@ -352,6 +374,8 @@
                                 all: unset;
                                 font-size: 1.3em;
                                 margin: 0;
+                                display: block;
+                                opacity: 0;
                             }
                             > .role {
                                 all: unset;
@@ -359,6 +383,7 @@
                                 margin: 0.75em 0 0 0;
                                 font-size: 0.95em;
                                 color: #666;
+                                opacity: 0;
                             }
                             > .bio {
                                 all: unset;
@@ -369,6 +394,7 @@
                                 color: #333;
                                 background: #f5f5f5;
                                 padding: 0.75em 1em;
+                                opacity: 0;
                             }
                         }
                     }
