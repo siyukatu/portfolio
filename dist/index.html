@@ -582,10 +582,13 @@
                                         }
                                         > .thumbnail {
                                             &.noimage:before {
-                                                transform: scale(1.25);
+                                                transform: scale(1.125);
                                             }
                                             > img {
-                                                transform: scale(1.25);
+                                                transform: scale(1.125);
+                                                &.mono {
+                                                    filter: none;
+                                                }
                                             }
                                         }
                                     }
@@ -601,14 +604,17 @@
                                             &:before {
                                                 content: 'No Image';
                                                 margin: auto;
-                                                transition: transform 0.3s ease;
+                                                transition: transform 0.2s ease;
                                             }
                                         }
                                         > img {
                                             width: 100%;
                                             height: 100%;
                                             object-fit: cover;
-                                            transition: transform 0.3s ease;
+                                            transition: transform 0.2s ease, filter 0.2s ease;
+                                            &.mono {
+                                                filter: grayscale(100%);
+                                            }
                                         }
                                         > .tags {
                                             position: absolute;
@@ -773,6 +779,15 @@
                 text-align: center;
                 font-size: 0.8em;
                 color: #666;
+                > .email {
+                    margin-bottom: 0.5em;
+                    > a {
+                        all: unset;
+                        color: currentColor;
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
+                }
             }
         }
         .jlink {
@@ -991,10 +1006,6 @@
                         <th><time datetime="2025-11">2025.11</time></th>
                         <td><h3>ポートフォリオを作成</h3><p>ただ今ご覧いただいているこのサイトを作成しました。</p></td>
                     </tr>
-                    <tr>
-                        <th><time>現在</time></th>
-                        <td></td>
-                    </tr>
                 </tbody>
             </table>
         </section>
@@ -1004,7 +1015,7 @@
                 <li>
                     <a href="https://nishisaba.jp" target="_blank">
                         <div class="thumbnail">
-                            <img src="/images/siyukatu_server_mc.webp" alt="しゆかつサーバーのスクリーンショット">
+                            <img class="mono" src="/images/siyukatu_server_mc.webp" alt="しゆかつサーバーのスクリーンショット">
                             <div class="tags">
                                 <span class="tag danger">提供終了</span>
                             </div>
@@ -1160,6 +1171,7 @@
         </section>
     </main>
     <footer>
+        <p class="email"><a href="mailto:siyukatu@gmail.com">siyukatu@gmail.com</a></p>
         <p class="copyright">© siyukatu</p>
     </footer>
     <script>
