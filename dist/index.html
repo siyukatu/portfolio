@@ -487,7 +487,10 @@
                                         --pb: 0.75em;
                                         > th {
                                             border-image: linear-gradient(#ddd 50%, #fff) 1;
-                                            padding-bottom: 2em;
+                                            padding-bottom: 1.5em;
+                                            &:after {
+                                                display: none;
+                                            }
                                         }
                                     }
                                     > th {
@@ -1005,6 +1008,10 @@
                     <tr>
                         <th><time datetime="2025-11">2025.11</time></th>
                         <td><h3>ポートフォリオを作成</h3><p>ただ今ご覧いただいているこのサイトを作成しました。</p></td>
+                    </tr>
+                    <tr class="last">
+                        <th></th>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
