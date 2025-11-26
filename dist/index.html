@@ -695,6 +695,92 @@
                         }
                     }
                     &#skills {
+                        &.visible {
+                            > .skills-list {
+                                > li {
+                                    --animation-name: fade-in-rl;
+                                    animation: var(--animation-name) 0.5s forwards;
+                                    animation-delay: calc(var(--order, 0) * .075s + var(--animation-base, 0s));
+                                    > div > .info > .progress > div:before {
+                                        width: calc(var(--value, 0) / 100 * 100%);
+                                        transition: width 1.25s calc(var(--order, 0) * .075s + var(--animation-base, 0s));
+                                    }
+                                }
+                            }
+                        }
+                        > .skills-list {
+                            all: unset;
+                            --gap: 1em;
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: var(--gap, 1em);
+                            > li {
+                                all: unset;
+                                width: calc(100% / var(--grid-count, 2) - (var(--gap) - var(--gap) / var(--grid-count)));
+                                opacity: 0;
+                                > div {
+                                    all: unset;
+                                    display: flex;
+                                    gap: 0.75em;
+                                    padding: 0.5em 0.75em;
+                                    border: solid 0.075em #eee;
+                                    box-sizing: border-box;
+                                    > .logo {
+                                        width: 1.5em;
+                                        height: 1.5em;
+                                        margin: auto 0;
+                                    }
+                                    > .info {
+                                        all: unset;
+                                        display: flex;
+                                        flex-direction: column;
+                                        line-height: 1.4;
+                                        flex-grow: 1;
+                                        > h3 {
+                                            all: unset;
+                                            font-size: 0.9em;
+                                            color: #333;
+                                        }
+                                        > p {
+                                            all: unset;
+                                            font-size: 0.8em;
+                                            color: #555;
+                                        }
+                                        > .progress {
+                                            all: unset;
+                                            --value: attr(value type(<number>));
+                                            margin: 0.25em 0 0;
+                                            width: 100%;
+                                            display: flex;
+                                            gap: 0.5em;
+                                            line-height: 1;
+                                            &:after {
+                                                content: attr(value) '%';
+                                                font-size: 0.7em;
+                                                color: #666;
+                                                margin: auto 0;
+                                                display: block;
+                                                width: 2em;
+                                                text-align: right;
+                                            }
+                                            > div {
+                                                background: #f0f0f0;
+                                                width: 100%;
+                                                height: 0.2em;
+                                                margin: auto 0;
+                                                &:before {
+                                                    content: '';
+                                                    display: block;
+                                                    width: 0;
+                                                    height: 100%;
+                                                    background: #333;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                     &#links {
                         &.visible {
@@ -1076,9 +1162,82 @@
         </section>
         <section id="skills">
             <h2><span>スキル</span><span>SKILLS</span></h2>
-            <div class="notify">
-                この項目は今後追加する予定です
-            </div>
+            <ul class="skills-list">
+                <li>
+                    <div>
+                        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><polygon fill="#E44D26" points="107.644,470.877 74.633,100.62 437.367,100.62 404.321,470.819 255.778,512"/><polygon fill="#F16529" points="256,480.523 376.03,447.246 404.27,130.894 256,130.894"/><polygon fill="#EBEBEB" points="256,268.217 195.91,268.217 191.76,221.716 256,221.716 256,176.305 255.843,176.305 142.132,176.305 143.219,188.488 154.38,313.627 256,313.627"/><polygon fill="#EBEBEB" points="256,386.153 255.801,386.206 205.227,372.55 201.994,336.333 177.419,336.333 156.409,336.333 162.771,407.634 255.791,433.457 256,433.399"/><path d="M108.382,0h23.077v22.8h21.11V0h23.078v69.044H152.57v-23.12h-21.11v23.12h-23.077V0z"/><path d="M205.994,22.896h-20.316V0h63.72v22.896h-20.325v46.148h-23.078V22.896z"/><path d="M259.511,0h24.063l14.802,24.26L313.163,0h24.072v69.044h-22.982V34.822l-15.877,24.549h-0.397l-15.888-24.549v34.222h-22.58V0z"/><path d="M348.72,0h23.084v46.222h32.453v22.822H348.72V0z"/><polygon fill="#FFFFFF" points="255.843,268.217 255.843,313.627 311.761,313.627 306.49,372.521 255.843,386.191 255.843,433.435 348.937,407.634 349.62,399.962 360.291,280.411 361.399,268.217 349.162,268.217"/><polygon fill="#FFFFFF" points="255.843,176.305 255.843,204.509 255.843,221.605 255.843,221.716 365.385,221.716 365.385,221.716 365.531,221.716 366.442,211.509 368.511,188.488 369.597,176.305"/></svg>
+                        <div class="info">
+                            <h3>HTML</h3>
+                            <p>ある程度書けます。</p>
+                            <div class="progress" value="50"><div></div></div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <!--
+                        The MIT License (MIT)
+
+                        Copyright (c) 2011 Christopher Williams <chris@iterativedesigns.com>,
+                                            Manuel Strehl <boldewyn@gmail.com>
+
+                        Permission is hereby granted, free of charge, to any person obtaining a copy
+                        of this software and associated documentation files (the "Software"), to deal
+                        in the Software without restriction, including without limitation the rights
+                        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+                        copies of the Software, and to permit persons to whom the Software is
+                        furnished to do so, subject to the following conditions:
+
+                        The above copyright notice and this permission notice shall be included in
+                        all copies or substantial portions of the Software.
+
+                        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+                        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+                        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+                        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+                        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+                        THE SOFTWARE.
+                        -->
+                        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 630 630"><g id="logo"><rect id="background" x="0" y="0" width="630" height="630" fill="#f7df1e" /><path id="j" d="m 165.65,526.47375 48.2125,-29.1775 C 223.16375,513.7875 231.625,527.74 251.92,527.74 c 19.45375,0 31.71875,-7.60975 31.71875,-37.21 l 0,-201.3 59.20375,0 0,202.1375 c 0,61.32 -35.94375,89.23125 -88.385,89.23125 -47.36125,0 -74.8525,-24.52875 -88.8075,-54.13" /><path id="s" d="m 375,520.13 48.20625,-27.91125 c 12.69,20.72375 29.1825,35.9475 58.36125,35.9475 24.53125,0 40.17375,-12.26475 40.17375,-29.18125 0,-20.29875 -16.06875,-27.48875 -43.135,-39.32625 l -14.7975,-6.3475 c -42.715,-18.18125 -71.05,-41.0175 -71.05,-89.2275 0,-44.40375 33.83125,-78.2375 86.695,-78.2375 37.6375,0 64.7025,13.11125 84.15375,47.36625 l -46.09625,29.60125 c -10.15,-18.1825 -21.1425,-25.37125 -38.0575,-25.37125 -17.33875,0 -28.335,10.995 -28.335,25.37125 0,17.7625 10.99625,24.9525 36.3675,35.94875 l 14.8,6.3425 c 50.325,21.56875 78.66,43.5575 78.66,93.03375 0,53.2875 -41.86625,82.465 -98.11,82.465 -54.97625,0 -90.5,-26.2175 -107.83625,-60.47375" /></g></svg>
+                        <div class="info">
+                            <h3>JavaScript</h3>
+                            <p>ある程度書けます。</p>
+                            <div class="progress" value="50"><div></div></div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-labelledby="css-logo-title css-logo-description"><title id="css-logo-title">CSS Logo</title><desc id="css-logo-description">A purple square with rounded corners and the letters CSS inside in white</desc><path id="bg" fill="#639" d="M0 0H840A160 160 0 0 1 1000 160V840A160 160 0 0 1 840 1000H160A160 160 0 0 1 0 840V0Z" /><path id="fg" fill="#fff" d="m358.1,920c-64.23-.06-103.86-36.23-103.1-102.79,0,0,0-168.39,0-168.39,0-33.74,9.88-59.4,29.64-76.96,35.49-34.19,117.83-36.27,152.59.52,21.42,18.89,29.5,57.48,27.58,93.49h-73.72c.56-14.15-.19-35.58-8.51-43.65-10.81-14.63-39.36-12.91-46.91,2.32-4.64,8.26-6.96,20.49-6.96,36.67v146.18c0,30.65,10.65,46.15,31.96,46.49,9.96,0,17.53-3.62,22.68-10.85,7.19-8.58,8.31-27.58,7.73-41.32h73.72c5.04,70.07-36.32,119.16-106.71,118.29Zm234.04,0c-71.17.98-103.01-49.66-101.04-118.29h69.59c-1.93,29.92,8.35,57.17,32.99,55.27,10.99,0,18.73-3.44,23.2-10.33,8.5-12.59,10.09-48.95-2.06-63.02-8.49-13.55-39.03-25.51-55.16-33.57-23.03-11.02-39.61-24.1-49.75-39.26-22.87-33.64-20.75-107.48,11.34-137.4,31.18-36.92,112.61-38.62,143.82-.77,19.25,19.51,27.66,57.9,26.03,93.23h-67.02c.57-14.52-.8-37.95-6.44-46.49-3.95-7.23-11.43-10.85-22.42-10.85-19.59,0-29.38,11.71-29.38,35.12.21,24.86,9.9,35.06,32.48,45.45,29.24,11.36,66.42,30.76,79.9,54.24,40.2,71.54,12.62,180.82-86.09,176.65Zm224.76,0c-71.17.98-103.01-49.66-101.04-118.29h69.59c-1.93,29.92,8.35,57.17,32.99,55.27,10.99,0,18.73-3.44,23.2-10.33,8.5-12.59,10.09-48.95-2.06-63.02-8.49-13.55-39.03-25.51-55.16-33.57-23.03-11.02-39.61-24.1-49.75-39.26-22.87-33.64-20.75-107.48,11.34-137.4,31.18-36.92,112.61-38.62,143.82-.77,19.25,19.51,27.66,57.9,26.03,93.23h-67.02c.57-14.52-.8-37.95-6.44-46.49-3.95-7.23-11.43-10.85-22.42-10.85-19.59,0-29.38,11.71-29.38,35.12.21,24.86,9.9,35.06,32.48,45.45,29.24,11.36,66.42,30.76,79.9,54.24,40.2,71.54,12.62,180.82-86.09,176.65Z" /></svg>
+                        <div class="info">
+                            <h3>CSS</h3>
+                            <p>ある程度書けます。</p>
+                            <div class="progress" value="50"><div></div></div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 136"><defs  id="defs4"> <linearGradient  id="linearGradient2795"> <stop style="stop-color:#b8b8b8;stop-opacity:0.49803922;" offset="0" id="stop2797" /> <stop style="stop-color:#7f7f7f;stop-opacity:0;"  offset="1"  id="stop2799" /> </linearGradient> <linearGradient  id="linearGradient2787"> <stop  style="stop-color:#7f7f7f;stop-opacity:0.5;"  offset="0"  id="stop2789" /> <stop  style="stop-color:#7f7f7f;stop-opacity:0;"  offset="1"  id="stop2791" /> </linearGradient> <linearGradient  id="linearGradient3676"> <stop  style="stop-color:#b2b2b2;stop-opacity:0.5;"  offset="0" id="stop3678" /> <stop  style="stop-color:#b3b3b3;stop-opacity:0;"  offset="1"  id="stop3680" /> </linearGradient> <linearGradient  id="linearGradient3236"> <stop  style="stop-color:#f4f4f4;stop-opacity:1"  offset="0"  id="stop3244" /> <stop  style="stop-color:white;stop-opacity:1"  offset="1"  id="stop3240" /> </linearGradient> <linearGradient  id="linearGradient4671"> <stop  style="stop-color:#ffd43b;stop-opacity:1;"  offset="0"  id="stop4673" /> <stop  style="stop-color:#ffe873;stop-opacity:1"  offset="1"  id="stop4675" /> </linearGradient> <linearGradient  id="linearGradient4689"> <stop  style="stop-color:#5a9fd4;stop-opacity:1;"  offset="0"  id="stop4691" /> <stop  style="stop-color:#306998;stop-opacity:1;"  offset="1"  id="stop4693" /> </linearGradient> <linearGradient  x1="224.23996"  y1="144.75717"  x2="-65.308502"  y2="144.75717"  id="linearGradient2987"  xlink:href="#linearGradient4671"  gradientUnits="userSpaceOnUse"  gradientTransform="translate(100.2702,99.61116)" /> <linearGradient  x1="172.94208"  y1="77.475983"  x2="26.670298"  y2="76.313133"  id="linearGradient2990"  xlink:href="#linearGradient4689"  gradientUnits="userSpaceOnUse"  gradientTransform="translate(100.2702,99.61116)" /> <linearGradient  xlink:href="#linearGradient4689"  id="linearGradient2587"  gradientUnits="userSpaceOnUse"  gradientTransform="translate(100.2702,99.61116)"  x1="172.94208"  y1="77.475983"  x2="26.670298"  y2="76.313133" /> <linearGradient  xlink:href="#linearGradient4671"  id="linearGradient2589"  gradientUnits="userSpaceOnUse"  gradientTransform="translate(100.2702,99.61116)"  x1="224.23996"  y1="144.75717"  x2="-65.308502"  y2="144.75717" /> <linearGradient  xlink:href="#linearGradient4689"  id="linearGradient2248"  gradientUnits="userSpaceOnUse"  gradientTransform="translate(100.2702,99.61116)"  x1="172.94208"  y1="77.475983"  x2="26.670298"  y2="76.313133" /> <linearGradient  xlink:href="#linearGradient4671"  id="linearGradient2250"  gradientUnits="userSpaceOnUse"  gradientTransform="translate(100.2702,99.61116)"  x1="224.23996"  y1="144.75717"  x2="-65.308502"  y2="144.75717" /> <linearGradient  xlink:href="#linearGradient4671"  id="linearGradient2255"  gradientUnits="userSpaceOnUse"  gradientTransform="matrix(0.562541,0,0,0.567972,-11.5974,-7.60954)"  x1="224.23996"  y1="144.75717"  x2="-65.308502"  y2="144.75717" /> <linearGradient  xlink:href="#linearGradient4689"  id="linearGradient2258"  gradientUnits="userSpaceOnUse"  gradientTransform="matrix(0.562541,0,0,0.567972,-11.5974,-7.60954)"  x1="172.94208"  y1="76.176224"  x2="26.670298"  y2="76.313133" /> <radialGradient  xlink:href="#linearGradient2795"  id="radialGradient2801"  cx="61.518883"  cy="132.28575"  fx="61.518883"  fy="132.28575"  r="29.036913"  gradientTransform="matrix(1,0,0,0.177966,0,108.7434)"  gradientUnits="userSpaceOnUse" /> <linearGradient  xlink:href="#linearGradient4671"  id="linearGradient1475"  gradientUnits="userSpaceOnUse"  gradientTransform="matrix(0.562541,0,0,0.567972,-14.99112,-11.702371)"  x1="150.96111"  y1="192.35176"  x2="112.03144"  y2="137.27299" /> <linearGradient  inkscape:collect="always"  xlink:href="#linearGradient4689"  id="linearGradient1478"  gradientUnits="userSpaceOnUse"  gradientTransform="matrix(0.562541,0,0,0.567972,-14.99112,-11.702371)"  x1="26.648937"  y1="20.603781"  x2="135.66525"  y2="114.39767" /> <radialGradient  xlink:href="#linearGradient2795"  id="radialGradient1480"  gradientUnits="userSpaceOnUse"  gradientTransform="matrix(1.7490565e-8,-0.23994696,1.054668,3.7915457e-7,-83.7008,142.46201)"  cx="61.518883" cy="132.28575" fx="61.518883" fy="132.28575" r="29.036913" /></defs><path style="fill:url(#linearGradient1478);fill-opacity:1" d="M 54.918785,9.1927421e-4 C 50.335132,0.02221727 45.957846,0.41313697 42.106285,1.0946693 30.760069,3.0991731 28.700036,7.2947714 28.700035,15.032169 v 10.21875 h 26.8125 v 3.40625 h -26.8125 -10.0625 c -7.792459,0 -14.6157588,4.683717 -16.7499998,13.59375 -2.46181998,10.212966 -2.57101508,16.586023 0,27.25 1.9059283,7.937852 6.4575432,13.593748 14.2499998,13.59375 h 9.21875 v -12.25 c 0,-8.849902 7.657144,-16.656248 16.75,-16.65625 h 26.78125 c 7.454951,0 13.406253,-6.138164 13.40625,-13.625 v -25.53125 c 0,-7.2663386 -6.12998,-12.7247771 -13.40625,-13.9374997 C 64.281548,0.32794397 59.502438,-0.02037903 54.918785,9.1927421e-4 Z m -14.5,8.21875012579 c 2.769547,0 5.03125,2.2986456 5.03125,5.1249996 -2e-6,2.816336 -2.261703,5.09375 -5.03125,5.09375 -2.779476,-1e-6 -5.03125,-2.277415 -5.03125,-5.09375 -10e-7,-2.826353 2.251774,-5.1249996 5.03125,-5.1249996 z" id="path1948" /><path style="fill:url(#linearGradient1475);fill-opacity:1" d="m 85.637535,28.657169 v 11.90625 c 0,9.230755 -7.825895,16.999999 -16.75,17 h -26.78125 c -7.335833,0 -13.406249,6.278483 -13.40625,13.625 v 25.531247 c 0,7.266344 6.318588,11.540324 13.40625,13.625004 8.487331,2.49561 16.626237,2.94663 26.78125,0 6.750155,-1.95439 13.406253,-5.88761 13.40625,-13.625004 V 86.500919 h -26.78125 v -3.40625 h 26.78125 13.406254 c 7.792461,0 10.696251,-5.435408 13.406241,-13.59375 2.79933,-8.398886 2.68022,-16.475776 0,-27.25 -1.92578,-7.757441 -5.60387,-13.59375 -13.406241,-13.59375 z m -15.0625,64.65625 c 2.779478,3e-6 5.03125,2.277417 5.03125,5.093747 -2e-6,2.826354 -2.251775,5.125004 -5.03125,5.125004 -2.76955,0 -5.03125,-2.29865 -5.03125,-5.125004 2e-6,-2.81633 2.261697,-5.093747 5.03125,-5.093747 z" id="path1950" /><ellipse style="opacity:0.44382;fill:url(#radialGradient1480);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:15.4174;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" id="path1894" cx="55.816761" cy="127.70079" rx="35.930977" ry="6.9673119" /></svg>
+                        <div class="info">
+                            <h3>Python</h3>
+                            <p>やや書けます。</p>
+                            <div class="progress" value="40"><div></div></div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m368-480 93-93-90-90-47 47-20-20 47-47-88-88-93 93 198 198Zm309 309 93-93-88-88-47 47-20-20 47-47-89-89-93 93 197 197Zm-64-515 73 73 74-74-73-73-74 74ZM285-172H172v-113l176-176-216-217 131-131 218 217 187-187q5-5 10-7t11-2q6 0 11 2t10 7l69 72q5 5 6.5 10t1.5 11q0 6-1.5 10.5T779-666L594-480l215 217-131 131-217-216-176 176Z"/></svg>
+                        <div class="info">
+                            <h3>デザイン</h3>
+                            <p>少しだけできます。</p>
+                            <div class="progress" value="10"><div></div></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </section>
         <section id="links">
             <h2><span>リンク</span><span>LINKS</span></h2>
@@ -1130,7 +1289,7 @@
                 </li>
                 <li>
                     <a href="https://vrchat.com/home/user/usr_b09afa8d-5a0c-4d89-9784-5792c16c28cb" target="_blank">
-                        <!-- 一時的な対応。VRChat側で1:1のロゴ画像が公開されたら置き換えます。 -->
+                        <!-- 一時的な対応です。VRChat側で1:1のロゴ画像(svg)が公開されたら置き換えます。 -->
                         <img class="logo" src="https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://vrchat.com/home&size=128" alt="VRChatのロゴ">
                         <span class="info">
                             <span class="service">VRChat</span>
