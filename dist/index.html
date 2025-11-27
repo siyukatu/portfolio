@@ -213,7 +213,7 @@
                     width: 100%;
                     padding: 10px 20px;
                     box-sizing: border-box;
-                    max-width: 800px;
+                    max-width: 1050px;
                     margin: auto;
                     > h1 {
                         all: unset;
@@ -303,7 +303,7 @@
                 > section {
                     --animation-base: 0.25s;
                     display: block;
-                    max-width: 800px;
+                    max-width: 1050px;
                     margin: 0 auto;
                     padding: calc(var(--header-height) + 1em) 20px 0 20px;
                     overflow: hidden;
@@ -993,6 +993,13 @@
             body {
                 > main {
                     --grid-count: 3;
+                }
+            }
+        }
+        @media (min-width: 1000px) {
+            body {
+                > main {
+                    --grid-count: 4;
                 }
             }
         }
