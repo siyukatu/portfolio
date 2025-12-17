@@ -59,7 +59,7 @@
         @keyframes fade-in-rl {
             0% {
                 opacity: 0;
-                transform: translateX(10px);
+                transform: translateX(7.5px);
             }
             100% {
                 opacity: 1;
@@ -384,7 +384,7 @@
                                     animation: fade-in-rl 0.5s ease forwards;
                                     animation-delay: calc(0.3s + var(--animation-base, 0s));
                                 }
-                                > .bio {
+                                > .profile {
                                     animation: fade-in-rl 0.5s ease forwards;
                                     animation-delay: calc(0.4s + var(--animation-base, 0s));
                                 }
@@ -443,7 +443,7 @@
                                 color: #666;
                                 opacity: 0;
                             }
-                            > .bio {
+                            > .profile {
                                 all: unset;
                                 display: block;
                                 margin: 0.5em 0 0 0;
@@ -453,6 +453,28 @@
                                 background: #f5f5f5;
                                 padding: 0.75em 1em;
                                 opacity: 0;
+                                > h3 {
+                                    all: unset;
+                                    display: block;
+                                    font-size: 0.9em;
+                                    font-weight: 500;
+                                    margin: 0 0 0.2em;
+                                    color: #555;
+                                    > svg {
+                                        width: 1.3em;
+                                        height: 1.3em;
+                                        vertical-align: middle;
+                                        fill: currentColor;
+                                    }
+                                }
+                                > p {
+                                    all: unset;
+                                    display: block;
+                                    margin: 0 0 0.75em;
+                                    &:last-child {
+                                        margin-bottom: 0;
+                                    }
+                                }
                             }
                         }
                     }
@@ -520,6 +542,7 @@
                                             border: solid 0.1em #aaa;
                                             border-radius: 50%;
                                             box-sizing: border-box;
+                                            outline: solid 0.15em #fff;
                                         }
                                         > time {
                                             all: unset;
@@ -538,6 +561,15 @@
                                             line-height: 1;
                                             margin: 0 0 0.25em 0;
                                             opacity: 0;
+                                            > .badge {
+                                                all: unset;
+                                                display: inline-block;
+                                                background: #f5f5f5;
+                                                font-size: 0.7em;
+                                                padding: 0.3em 0.4em;
+                                                margin-right: 0.5em;
+                                                box-sizing: border-box;
+                                            }
                                         }
                                         > p {
                                             all: unset;
@@ -1090,10 +1122,12 @@
             <div class="information">
                 <h2>siyukatu</h2>
                 <p class="role">高校生 (平成19年度生まれ)</p>
-                <p class="bio">
-                    割と思いつきで行動します。<br>
-                    このポートフォリオページも思いつきで作りました。
-                </p>
+                <div class="profile">
+                    <p class="bio">
+                        割と思いつきで行動します。<br>
+                        このポートフォリオページも思いつきで作りました。
+                    </p>
+                </div>
             </div>
         </section>
         <section id="history">
@@ -1430,22 +1464,20 @@
         const start = Date.now();
         window.addEventListener('load', () => {
             setTimeout(() => {
-                setTimeout(() => {
-                    sections.forEach((section) => {
-                        const observer = new IntersectionObserver((entries) => {
-                            entries.forEach((entry) => {
-                                if (entry.isIntersecting) {
-                                    section.classList.add('visible');
-                                } else {
-                                    section.classList.remove('visible');
-                                }
-                            });
-                        }, { threshold: 0.1 });
-                        observer.observe(section);
-                    });
-                }, 1300);
-                document.body.classList.add('loaded');
-            }, Math.max(0, 1000 - (Date.now() - start)));
+                sections.forEach((section) => {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                section.classList.add('visible');
+                            } else {
+                                section.classList.remove('visible');
+                            }
+                        });
+                    }, { threshold: 0.1 });
+                    observer.observe(section);
+                });
+            }, 1300);
+            document.body.classList.add('loaded');
         });
         document.getElementById('menu-button').addEventListener('click', () => {
             document.querySelector('header .inner').classList.toggle('openmenu');
@@ -1466,7 +1498,7 @@
             const scrollY = window.scrollY;
             let activeIndex = 0;
             sections.forEach((section, index) => {
-                if (scrollY >= section.offsetTop - 10) {
+                if (scrollY >= section.offsetTop) {
                     activeIndex = index;
                 }
             });
