@@ -1496,6 +1496,11 @@
                 row.style.setProperty('--order', index);
             });
 
+            document.querySelectorAll('ul > li > div > .info > .progress[value]').forEach(bar => {
+                const value = bar.getAttribute('value');
+                bar.children[0].style.setProperty('--value', value);
+            });
+
             document.querySelectorAll('main > section > ul').forEach(ul => {
                 ul.querySelectorAll('li').forEach((item, index) => {
                     item.style.setProperty('--order', index);
